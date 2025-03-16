@@ -1,0 +1,34 @@
+database:
+  name: db1
+  url: localhost:5432
+  user: user1
+  memory:
+    sharedBuffers: 524288
+    tempBuffers: 65536
+    workMem: 32868
+  disk:
+    tempFileLimit: -1
+    maxNotifyQueuePages: 1048576
+    files:
+      - file1
+      - file2
+  schemas:
+    - schemaName: public
+      tables:
+        - tableName: employee
+          columns:
+            - columnName: employee_id
+              columnType: integer
+            - columnName: employee_name
+              columnType: string
+            - columnName: dept_id
+              columnType: integer
+        - tableName: department
+          columns:
+            - columnName: dept_id
+              columnType: integer
+            - columnName: dept_name
+              columnType: string
+      views:
+        - viewName : it_dept_employees
+          viewSqlText : SELECT * FROM public.employee WHERE dept_id = 'IT'
